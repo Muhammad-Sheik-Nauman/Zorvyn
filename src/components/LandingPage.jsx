@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { LuSun, LuMoon, LuActivity, LuTrendingUp, LuChartPie, LuLock, LuSearch, LuZap, LuSave, LuSmartphone } from 'react-icons/lu';
+import { LuSun, LuMoon, LuActivity, LuTrendingUp, LuChartPie, LuLock, LuSearch, LuZap, LuSave, LuSmartphone, LuMousePointer2, LuCreditCard, LuLayoutDashboard, LuShare2 } from 'react-icons/lu';
 import { useApp } from '../context/AppContext';
 import '../landing.css';
 
@@ -436,10 +436,10 @@ export default function LandingPage({ onEnter }) {
 
         <div className="lp-steps">
           {[
-            { n: '01', icon: '🖱️', title: 'Open the App', desc: 'Click "Get Started" — no sign-up, no email, no credit card. Just open and go.' },
-            { n: '02', icon: '💳', title: 'Add Transactions', desc: 'Log income and expenses with a category, date, and description. Or use the pre-loaded demo data.' },
-            { n: '03', icon: '📊', title: 'See Your Insights', desc: 'The dashboard, charts, and insights page update instantly. Filter, sort, and find patterns in seconds.' },
-            { n: '04', icon: '📤', title: 'Export & Share', desc: 'Download your filtered transactions as a CSV anytime. Your data, your format.' },
+            { n: '01', icon: <LuMousePointer2 />, title: 'Open the App', desc: 'Click "Get Started" — no sign-up, no email, no credit card. Just open and go.' },
+            { n: '02', icon: <LuCreditCard />, title: 'Add Transactions', desc: 'Log income and expenses with a category, date, and description. Or use the pre-loaded demo data.' },
+            { n: '03', icon: <LuLayoutDashboard />, title: 'See Your Insights', desc: 'The dashboard, charts, and insights page update instantly. Filter, sort, and find patterns in seconds.' },
+            { n: '04', icon: <LuShare2 />, title: 'Export & Share', desc: 'Download your filtered transactions as a CSV anytime. Your data, your format.' },
           ].map((s, i) => (
             <Reveal key={s.n} delay={i * 100}>
               <div className="lp-step">
