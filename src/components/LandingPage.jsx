@@ -1,9 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { LuSun, LuMoon, LuActivity, LuTrendingUp, LuChartPie, LuLock, LuSearch, LuZap, LuSave, LuSmartphone, LuMousePointer2, LuCreditCard, LuLayoutDashboard, LuShare2 } from 'react-icons/lu';
 import { useApp } from '../context/AppContext';
 import '../landing.css';
 
-/* ── tiny hook: animate number on scroll ── */
+/* tiny hook: animate number on scroll */
 function useCounter(target, duration = 1800, trigger) {
   const [val, setVal] = useState(0);
   useEffect(() => {
@@ -21,7 +22,7 @@ function useCounter(target, duration = 1800, trigger) {
   return val;
 }
 
-/* ── animated stat item ── */
+/* animated stat item */
 function StatItem({ value, suffix = '', label, trigger }) {
   const count = useCounter(value, 1600, trigger);
   return (
@@ -32,7 +33,7 @@ function StatItem({ value, suffix = '', label, trigger }) {
   );
 }
 
-/* ── reveal on scroll ── */
+/*  reveal on scroll  */
 function useReveal() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -60,9 +61,9 @@ function Reveal({ children, delay = 0, className = '' }) {
   );
 }
 
-/* ─────────────────────────────────────────
+/* 
    FEATURE CARDS DATA
-───────────────────────────────────────── */
+ */
 const features = [
   {
     icon: <LuActivity />,
@@ -120,9 +121,9 @@ const features = [
   },
 ];
 
-/* ─────────────────────────────────────────
+/* 
    TESTIMONIALS
-───────────────────────────────────────── */
+ */
 const testimonials = [
   {
     text: 'Finally a finance app that doesn\'t look like a spreadsheet. The insights page alone saved me $200 last month.',
@@ -147,9 +148,9 @@ const testimonials = [
   },
 ];
 
-/* ─────────────────────────────────────────
+/* 
    PRICING
-───────────────────────────────────────── */
+ */
 const plans = [
   {
     name: 'Free',
@@ -181,9 +182,9 @@ const plans = [
   },
 ];
 
-/* ─────────────────────────────────────────
+/* 
    MINI MOCK DASHBOARD
-───────────────────────────────────────── */
+ */
 function MockDashboard() {
   return (
     <div className="lp-mock" aria-hidden="true">
@@ -233,9 +234,9 @@ function MockDashboard() {
           <div className="lp-mock-charts">
             <div className="lp-mock-chart-box">
               <div className="lp-mock-chart-title">Balance Trend</div>
-              <svg 
-                viewBox="0 0 260 80" 
-                preserveAspectRatio="none" 
+              <svg
+                viewBox="0 0 260 80"
+                preserveAspectRatio="none"
                 style={{ width: '100%', height: 72 }}
                 className="lp-mock-graph-svg"
               >
@@ -279,10 +280,11 @@ function MockDashboard() {
   );
 }
 
-/* ─────────────────────────────────────────
+/* 
    MAIN LANDING PAGE
-───────────────────────────────────────── */
+*/
 export default function LandingPage({ onEnter }) {
+  const navigate = useNavigate();
   const [statsRef, statsVisible] = useReveal();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -311,13 +313,13 @@ export default function LandingPage({ onEnter }) {
 
   return (
     <div className={`lp-root ${isDark ? '' : 'lp-light'}`}>
-      {/* ── BACKGROUND ── */}
+      {/* BACKGROUND  */}
       <div className="lp-bg" aria-hidden="true" />
       <div className="lp-orb lp-orb-1" aria-hidden="true" />
       <div className="lp-orb lp-orb-2" aria-hidden="true" />
       <div className="lp-orb lp-orb-3" aria-hidden="true" />
 
-      {/* ════════════════════ NAV ════════════════════ */}
+      {/*  NAV*/}
       <nav className={`lp-nav ${isScrolled ? 'lp-nav-scrolled' : ''}`} role="navigation" aria-label="Main navigation">
         <a href="#" className="lp-nav-logo" onClick={e => { e.preventDefault(); scrollTo('hero'); }}>
           <img src="/FinTrack.png" alt="FinTrack" className="lp-nav-logo-ico" />
@@ -329,7 +331,7 @@ export default function LandingPage({ onEnter }) {
           <li><button className="lp-nav-link" onClick={() => scrollTo('pricing')}>Pricing</button></li>
           <li><button className="lp-nav-link" onClick={() => scrollTo('testimonials')}>Reviews</button></li>
           <li>
-            <button id="nav-open-app-btn" className="lp-btn lp-btn-primary lp-nav-cta" onClick={onEnter}>
+            <button id="nav-open-app-btn" className="lp-btn lp-btn-primary lp-nav-cta" onClick={() => onEnter(navigate)}>
               Open App →
             </button>
           </li>
@@ -354,7 +356,7 @@ export default function LandingPage({ onEnter }) {
         </div>
       </nav>
 
-      {/* ════════════════════ HERO ════════════════════ */}
+      {/*  HERO */}
       <section id="hero" className="lp-hero">
         <div className="lp-hero-badge">
           <span className="lp-badge-dot" />
@@ -372,7 +374,7 @@ export default function LandingPage({ onEnter }) {
         </p>
 
         <div className="lp-hero-actions">
-          <button id="hero-get-started-btn" className="lp-btn lp-btn-primary lp-btn-lg" onClick={onEnter}>
+          <button id="hero-get-started-btn" className="lp-btn lp-btn-primary lp-btn-lg" onClick={() => onEnter(navigate)}>
             Get Started . It's Free
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </button>
@@ -398,7 +400,7 @@ export default function LandingPage({ onEnter }) {
         </div>
       </section>
 
-      {/* ════════════════════ STATS ════════════════════ */}
+      {/* STATS */}
       <section className="lp-stats-section" ref={statsRef} aria-label="Key statistics">
         <StatItem value={2400} suffix="+" label="Active Users" trigger={statsVisible} />
         <div className="lp-stats-divider" aria-hidden="true" />
@@ -409,7 +411,7 @@ export default function LandingPage({ onEnter }) {
         <StatItem value={6} label="Months of History" trigger={statsVisible} />
       </section>
 
-      {/* ════════════════════ FEATURES ════════════════════ */}
+      {/*FEATURES */}
       <section id="features" className="lp-section lp-features-section">
         <Reveal>
           <div className="lp-section-badge">✦ Features</div>
@@ -432,7 +434,7 @@ export default function LandingPage({ onEnter }) {
         </div>
       </section>
 
-      {/* ════════════════════ HOW IT WORKS ════════════════════ */}
+      {/* HOW IT WORKS */}
       <section id="how" className="lp-section lp-how-section">
         <Reveal>
           <div className="lp-section-badge">⚡ How it works</div>
@@ -459,7 +461,7 @@ export default function LandingPage({ onEnter }) {
         </div>
       </section>
 
-      {/* ════════════════════ TESTIMONIALS ════════════════════ */}
+      {/* TESTIMONIALS */}
       <section id="testimonials" className="lp-section lp-testi-section">
         <Reveal>
           <div className="lp-section-badge">💬 What users say</div>
@@ -485,7 +487,7 @@ export default function LandingPage({ onEnter }) {
         </div>
       </section>
 
-      {/* ════════════════════ PRICING ════════════════════ */}
+      {/* PRICING  */}
       <section id="pricing" className="lp-section lp-pricing-section">
         <Reveal>
           <div className="lp-section-badge">💳 Pricing</div>
@@ -525,7 +527,7 @@ export default function LandingPage({ onEnter }) {
         </div>
       </section>
 
-      {/* ════════════════════ CTA BANNER ════════════════════ */}
+      {/* CTA BANNER  */}
       <section className="lp-cta-section">
         <Reveal>
           <div className="lp-cta-card">
@@ -537,7 +539,7 @@ export default function LandingPage({ onEnter }) {
             <p className="lp-cta-sub">
               No account needed. No data leaves your device. Just open the app and start tracking.
             </p>
-            <button id="cta-open-app-btn" className="lp-btn lp-btn-primary lp-btn-xl" onClick={onEnter}>
+            <button id="cta-open-app-btn" className="lp-btn lp-btn-primary lp-btn-xl" onClick={() => onEnter(navigate)}>
               Open FinTrack Dashboard
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </button>
@@ -545,7 +547,7 @@ export default function LandingPage({ onEnter }) {
         </Reveal>
       </section>
 
-      {/* ════════════════════ FOOTER ════════════════════ */}
+      {/*  FOOTER */}
       <footer className="lp-footer" role="contentinfo">
         <div className="lp-footer-inner">
           <div className="lp-footer-brand">

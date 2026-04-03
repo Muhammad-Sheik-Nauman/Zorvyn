@@ -26,6 +26,7 @@ A clean, premium, and fully interactive personal finance dashboard built as part
 ### 5.  Additional Improvements
 *   **Dark & Light Mode**: A sleek, dark-blue professional theme with a smooth daylight toggle.
 *   **Data Persistence**: Uses `localStorage` to save your transactions, theme choice, and role automatically.
+*   **URL-Based Routing**: Transitioned from state-based navigation to professional **React Router** implementation (e.g., `/app/dashboard`, `/app/transactions`) with full browser history support.
 *   **Animated "Video-Like" Hero**: A continuous, high-speed drawing animation for the dashboard preview on the landing page.
 *   **CSV Export**: Advanced feature to download transaction history instantly for external processing.
 *   **Custom Select & UX**: Custom-built dropdown components that override native browser behavior for a pixel-perfect mobile experience.
@@ -41,6 +42,7 @@ A clean, premium, and fully interactive personal finance dashboard built as part
 ## Tech Stack & Architecture
 
 *   **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/) (Blazing fast HMR and builds)
+*   **Routing**: [React Router](https://reactrouter.com/) for a multi-page SPA experience.
 *   **State Management**: React Context Powerhouse (`AppProvider` + `useReducer`) for global data synchronization.
 *   **Charts**: [Recharts](https://recharts.org/) for robust, responsive data visualizations.
 *   **Icons**: [Lucide React](https://lucide.dev/) for high-quality, lightweight line icons.

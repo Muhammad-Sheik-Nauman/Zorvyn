@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -22,26 +23,31 @@ function DashboardPage() {
   );
 }
 
-function AppContent({ onExit }) {
-  const { state } = useApp();
+function AppContent() {
+  const { state, dispatch } = useApp();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const renderPage = () => {
-    switch (state.activeTab) {
-      case 'dashboard':
-        return <DashboardPage />;
-      case 'transactions':
-        return <TransactionList />;
-      case 'insights':
-        return <Insights />;
-      default:
-        return <DashboardPage />;
+  // Sync state activeTab with URL for sidebar active state
+  useEffect(() => {
+    const path = location.pathname.split('/')[2] || 'dashboard';
+    if (state.activeTab !== path) {
+      dispatch({ type: 'SET_TAB', payload: path });
     }
+  }, [location.pathname, state.activeTab, dispatch]);
+
+  const handleExit = () => {
+    navigate('/');
   };
 
   return (
     <div className={`app-layout ${sidebarOpen ? 'sidebar-open' : ''}`}>
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} onExit={onExit} />
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        onExit={handleExit}
+      />
       <div
         className="sidebar-overlay"
         onClick={() => setSidebarOpen(false)}
@@ -49,28 +55,29 @@ function AppContent({ onExit }) {
       <main className="main-content">
         <Header onMenuToggle={() => setSidebarOpen(!sidebarOpen)} />
         <div className="page-content">
-          {renderPage()}
+          <Routes>
+            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="transactions" element={<TransactionList />} />
+            <Route path="insights" element={<Insights />} />
+            <Route path="*" element={<Navigate to="dashboard" replace />} />
+          </Routes>
         </div>
       </main>
     </div>
   );
 }
 
-function MainRoutes() {
-  const [showLanding, setShowLanding] = useState(true);
-
-  if (showLanding) {
-    return <LandingPage onEnter={() => setShowLanding(false)} />;
-  }
-
-  return <AppContent onExit={() => setShowLanding(true)} />;
-}
-
 function App() {
   return (
-    <AppProvider>
-      <MainRoutes />
-    </AppProvider>
+    <Router>
+      <AppProvider>
+        <Routes>
+          <Route path="/" element={<LandingPage onEnter={(nav) => nav('/app/dashboard')} />} />
+          <Route path="/app/*" element={<AppContent />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </AppProvider>
+    </Router>
   );
 }
 

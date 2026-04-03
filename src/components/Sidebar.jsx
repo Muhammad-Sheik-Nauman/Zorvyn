@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import {
   HiOutlineViewGrid,
@@ -11,6 +12,7 @@ import {
 export default function Sidebar({ isOpen, onClose, onExit }) {
   const { state, dispatch } = useApp();
   const { activeTab, role, darkMode } = state;
+  const navigate = useNavigate();
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: <HiOutlineViewGrid /> },
@@ -36,7 +38,7 @@ export default function Sidebar({ isOpen, onClose, onExit }) {
             key={item.id}
             className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
             onClick={() => {
-              dispatch({ type: 'SET_TAB', payload: item.id });
+              navigate(`/app/${item.id}`);
               if (onClose) onClose();
             }}
           >
