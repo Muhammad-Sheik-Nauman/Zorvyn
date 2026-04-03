@@ -74,7 +74,7 @@ const features = [
     icon: <LuTrendingUp />,
     color: 'teal',
     title: 'Balance Trends',
-    desc: 'Visualize 6 months of income vs. expense history with interactive area charts — spot patterns at a glance.',
+    desc: 'Visualize 6 months of income vs. expense history with interactive area charts . spot patterns at a glance.',
   },
   {
     icon: <LuChartPie />,
@@ -86,7 +86,7 @@ const features = [
     icon: <LuLock />,
     color: 'pink',
     title: 'Role-Based Access',
-    desc: 'Switch between Admin (full CRUD) and Viewer (read-only) roles — perfect for shared household or team budgets.',
+    desc: 'Switch between Admin (full CRUD) and Viewer (read-only) roles . perfect for shared household or team budgets.',
   },
   {
     icon: <LuSearch />,
@@ -98,7 +98,7 @@ const features = [
     icon: <LuZap />,
     color: 'amber',
     title: 'AI-Style Insights',
-    desc: 'Automatic savings rate, top spending categories, average daily spend, and monthly comparisons — all computed live.',
+    desc: 'Automatic savings rate, top spending categories, average daily spend, and monthly comparisons . all computed live.',
   },
   {
     icon: <LuMoon />,
@@ -110,7 +110,7 @@ const features = [
     icon: <LuSave />,
     color: 'green',
     title: 'Offline-First',
-    desc: 'All your data is persisted to localStorage — no account, no cloud, no internet required. Your data stays yours.',
+    desc: 'All your data is persisted to localStorage . no account, no cloud, no internet required. Your data stays yours.',
   },
   {
     icon: <LuSmartphone />,
@@ -139,7 +139,7 @@ const testimonials = [
     color: '#22d3a5',
   },
   {
-    text: 'The role-based access is genius — my partner uses Viewer mode so they can see our spending without messing anything up.',
+    text: 'The role-based access is genius . my partner uses Viewer mode so they can see our spending without messing anything up.',
     name: 'Priya R.',
     role: 'Product Manager',
     avatar: 'PR',
@@ -192,7 +192,7 @@ function MockDashboard() {
         <span className="lp-dot lp-dot-r" />
         <span className="lp-dot lp-dot-y" />
         <span className="lp-dot lp-dot-g" />
-        <span className="lp-mock-url">app.fintrack.io — Dashboard</span>
+        <span className="lp-mock-url">app.fintrack.io . Dashboard</span>
       </div>
       <div className="lp-mock-body">
         {/* sidebar */}
@@ -221,8 +221,8 @@ function MockDashboard() {
               { label: 'Income', val: '$5,200', change: '↑ 4.1%', color: '#22d3a5', up: true },
               { label: 'Expenses', val: '$2,360', change: '↓ 1.5%', color: '#f87171', up: false },
               { label: 'Transactions', val: '184', change: 'Last 6 mo', color: 'var(--lp-text)', up: null },
-            ].map(c => (
-              <div key={c.label} className="lp-mock-card">
+            ].map((c, i) => (
+              <div key={c.label} className="lp-mock-card" style={{ animationDelay: `${i * 100 + 300}ms` }}>
                 <div className="lp-mock-card-lbl">{c.label}</div>
                 <div className="lp-mock-card-val" style={{ color: c.color }}>{c.val}</div>
                 <div className={`lp-mock-card-chg ${c.up === true ? 'lp-up' : c.up === false ? 'lp-dn' : 'lp-neu'}`}>{c.change}</div>
@@ -233,7 +233,12 @@ function MockDashboard() {
           <div className="lp-mock-charts">
             <div className="lp-mock-chart-box">
               <div className="lp-mock-chart-title">Balance Trend</div>
-              <svg viewBox="0 0 260 80" preserveAspectRatio="none" style={{ width: '100%', height: 72 }}>
+              <svg 
+                viewBox="0 0 260 80" 
+                preserveAspectRatio="none" 
+                style={{ width: '100%', height: 72 }}
+                className="lp-mock-graph-svg"
+              >
                 <defs>
                   <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#6366f1" stopOpacity="0.5" />
@@ -244,19 +249,19 @@ function MockDashboard() {
                     <stop offset="100%" stopColor="#22d3a5" stopOpacity="0" />
                   </linearGradient>
                 </defs>
-                <path d="M0,60 C40,55 80,30 120,25 C160,20 200,35 260,18 L260,80 L0,80 Z" fill="url(#g2)" />
-                <path d="M0,60 C40,55 80,30 120,25 C160,20 200,35 260,18" fill="none" stroke="#22d3a5" strokeWidth="1.5" />
-                <path d="M0,70 C40,68 80,58 120,52 C160,46 200,50 260,42 L260,80 L0,80 Z" fill="url(#g1)" />
-                <path d="M0,70 C40,68 80,58 120,52 C160,46 200,50 260,42" fill="none" stroke="#6366f1" strokeWidth="1.5" />
+                <path d="M0,60 C40,55 80,30 120,25 C160,20 200,35 260,18 L260,80 L0,80 Z" fill="url(#g2)" className="lp-graph-path-2" />
+                <path d="M0,60 C40,55 80,30 120,25 C160,20 200,35 260,18" fill="none" stroke="#22d3a5" strokeWidth="1.5" className="lp-graph-line-2" />
+                <path d="M0,70 C40,68 80,58 120,52 C160,46 200,50 260,42 L260,80 L0,80 Z" fill="url(#g1)" className="lp-graph-path-1" />
+                <path d="M0,70 C40,68 80,58 120,52 C160,46 200,50 260,42" fill="none" stroke="#6366f1" strokeWidth="1.5" className="lp-graph-line-1" />
               </svg>
             </div>
-            <div className="lp-mock-chart-box">
+            <div className="lp-mock-chart-box" style={{ animationDelay: '0.8s' }}>
               <div className="lp-mock-chart-title">Spending</div>
               <div className="lp-donut-wrap">
-                <svg viewBox="0 0 70 70" style={{ width: 64, height: 64 }}>
-                  <circle cx="35" cy="35" r="26" fill="none" stroke="#6366f1" strokeWidth="10" strokeDasharray="60 103" strokeDashoffset="-4" strokeLinecap="round" />
-                  <circle cx="35" cy="35" r="26" fill="none" stroke="#22d3a5" strokeWidth="10" strokeDasharray="38 103" strokeDashoffset="-64" strokeLinecap="round" />
-                  <circle cx="35" cy="35" r="26" fill="none" stroke="#a78bfa" strokeWidth="10" strokeDasharray="22 103" strokeDashoffset="-102" strokeLinecap="round" />
+                <svg viewBox="0 0 70 70" style={{ width: 64, height: 64 }} className="lp-mock-donut-svg">
+                  <circle cx="35" cy="35" r="26" fill="none" stroke="#6366f1" strokeWidth="10" strokeDasharray="60 103" strokeDashoffset="-4" strokeLinecap="round" className="lp-donut-seg" style={{ animationDelay: '1s' }} />
+                  <circle cx="35" cy="35" r="26" fill="none" stroke="#22d3a5" strokeWidth="10" strokeDasharray="38 103" strokeDashoffset="-64" strokeLinecap="round" className="lp-donut-seg" style={{ animationDelay: '1.2s' }} />
+                  <circle cx="35" cy="35" r="26" fill="none" stroke="#a78bfa" strokeWidth="10" strokeDasharray="22 103" strokeDashoffset="-102" strokeLinecap="round" className="lp-donut-seg" style={{ animationDelay: '1.4s' }} />
                   <text x="35" y="32" textAnchor="middle" fill="#e8e8e8" fontSize="7" fontWeight="700">$2.3k</text>
                   <text x="35" y="40" textAnchor="middle" fill="#6b6b6b" fontSize="5">total</text>
                 </svg>

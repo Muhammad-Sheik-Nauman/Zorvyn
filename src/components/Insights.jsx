@@ -111,7 +111,7 @@ export default function Insights() {
     <div className="insights-page">
       {/* Insight cards */}
       <div className="insight-cards">
-        <div className="insight-card highlight">
+        <div className="insight-card" style={{ borderColor: 'rgba(239, 68, 68, 0.4)' }}>
           <div className="insight-icon" style={{ color: '#ef4444' }}>
             <HiOutlineTrendingUp />
           </div>
@@ -126,7 +126,7 @@ export default function Insights() {
           </div>
         </div>
 
-        <div className="insight-card">
+        <div className="insight-card" style={{ borderColor: 'rgba(34, 197, 94, 0.4)' }}>
           <div className="insight-icon" style={{ color: '#22c55e' }}>
             <HiOutlineTrendingDown />
           </div>
@@ -141,7 +141,7 @@ export default function Insights() {
           </div>
         </div>
 
-        <div className="insight-card">
+        <div className="insight-card" style={{ borderColor: 'rgba(245, 158, 11, 0.4)' }}>
           <div className="insight-icon" style={{ color: '#f59e0b' }}>
             <HiOutlineExclamationCircle />
           </div>
@@ -154,7 +154,7 @@ export default function Insights() {
           </div>
         </div>
 
-        <div className="insight-card">
+        <div className="insight-card" style={{ borderColor: 'rgba(99, 102, 241, 0.4)' }}>
           <div className="insight-icon" style={{ color: '#6366f1' }}>
             <HiOutlineChartPie />
           </div>

@@ -1,128 +1,81 @@
-# FinTrack — Finance Dashboard UI
+# FinTrack – Modern Finance Dashboard
 
-A clean, interactive finance dashboard built with **React + Vite** for tracking personal financial activity. Includes real-time visualizations, transaction management, role-based UI, and data-driven insights.
+A clean, premium, and fully interactive personal finance dashboard built as part of the **Zorvyn Frontend Developer Intern** assignment. FinTrack turns raw transaction history into beautiful, actionable insights while maintaining a 100% private, client-side experience.
 
----
+##  Key Features
 
-## 🔗 Quick Start
+### 1. Dashboard Overview
+*   **Live Summary Cards**: Real-time tracking of Total Balance, Income, and Expenses.
+*   **Balance Trend (Time-based)**: An interactive area chart visualizing the last 6 months of financial history with diagonal plotting animations.
+*   **Spending Breakdown (Categorical)**: A categorical donut chart that reveals your top 5 spending areas at a glance.
 
-```bash
-# Install dependencies
-npm install
+### 2. Transactions & Data Control
+*   **Smart Filter Toolbar**: Instantly search by description, filter by type (Income/Expense), or narrow down by 5 core categories.
+*   **Multicolumn Sorting**: Sort transactions by Date, Amount, or Category.
+*   **CSV Export**: One-click functionality to download your transaction history as a CSV file for external use.
 
-# Start development server
-npm run dev
+### 3. Role-Based UI (RBAC)
+*   **Admin Mode**: Full CRUD access — add, edit, and delete transactions with instant feedback.
+*   **Viewer Mode**: Read-only access — ideal for shared budgeting where only one user manages the data.
+*   **Role Toggle**: Seamlessly switch roles via a modern pill-shaped segmented toggle in the header.
 
-# Build for production
-npm run build
-```
+### 4. Advanced Insights
+*   **Smart Analytics**: Automatic calculation of your highest spending category, monthly comparison, and savings rate percentage.
+*   **Key Observations**: Contextual observations like "Biggest single expense" or "Best savings month" generated from your data.
 
-The app runs at `http://localhost:5173` by default.
+### 5.  Additional Improvements
+*   **Dark & Light Mode**: A sleek, dark-blue professional theme with a smooth daylight toggle.
+*   **Data Persistence**: Uses `localStorage` to save your transactions, theme choice, and role automatically.
+*   **Animated "Video-Like" Hero**: A continuous, high-speed drawing animation for the dashboard preview on the landing page.
+*   **CSV Export**: Advanced feature to download transaction history instantly for external processing.
+*   **Custom Select & UX**: Custom-built dropdown components that override native browser behavior for a pixel-perfect mobile experience.
 
----
-
-## ✨ Features
-
-### Dashboard Overview
-- **Summary Cards** — Total Balance, Income, Expenses, and Transaction count at a glance
-- **Balance Trend Chart** — Area chart showing monthly income vs. expenses over the past 6 months
-- **Spending Breakdown** — Interactive donut chart with per-category expense distribution
-
-### Transactions
-- Searchable, sortable transaction list with category color indicators
-- **Filtering** by type (income/expense), category, and sort order
-- **Add / Edit / Delete** transactions (Admin only)
-- **CSV Export** — Download filtered transactions as a `.csv` file
-
-### Role-Based UI (RBAC)
-- Toggle between **Admin** and **Viewer** roles via the sidebar dropdown
-- **Admin**: Full access — can add, edit, and delete transactions
-- **Viewer**: Read-only — action buttons are hidden, data is view-only
-- Role indicator badge shown in the header
-
-### Insights
-- **Highest & Lowest Spending** categories identified automatically
-- **Average Daily Spending** calculated from active transaction days
-- **Savings Rate** percentage with contextual feedback
-- **Monthly Comparison** bar chart (income vs. expense per month)
-- **Key Observations** — largest expense, best/worst savings months, and category diversity
-
-### Additional Features
-- 🌓 **Dark / Light Mode** toggle with system-level theming
-- 💾 **Local Storage Persistence** — transactions, role, and theme preference are saved
-- 📱 **Fully Responsive** — adapts from desktop to mobile with collapsible sidebar
-- ⚡ **Smooth Animations** — fade-ins, scale transitions, and hover micro-interactions
-- 📤 **CSV Export** — export filtered transaction data
+### 5. Premium UI/UX & Responsive Design
+*   **Mobile-First Aesthetic**: Fully responsive layout with custom mobile-friendly select components to prevent native browser overlays.
+*   **Dark & Light Mode**: A sleek, dark-blue professional theme with a smooth daylight toggle.
+*   **Cinematic Animations**: Staggered fade-ins, drawing graph loops, and micro-interactions that make the app feel like a high-end product demo.
+*   **Persistent State**: Your transactions, theme choice, and role are automatically saved to `localStorage`, surviving browser refreshes.
 
 ---
 
-## 🏗️ Project Structure
+## Tech Stack & Architecture
 
-```
-src/
-├── components/
-│   ├── BalanceTrend.jsx        # Monthly income/expense area chart
-│   ├── Header.jsx              # Top bar with greeting and role badge
-│   ├── Insights.jsx            # Analytics page with charts & observations
-│   ├── Sidebar.jsx             # Navigation, role switcher, theme toggle
-│   ├── SpendingBreakdown.jsx   # Donut chart for expense categories
-│   ├── SummaryCards.jsx        # Overview metric cards
-│   ├── TransactionList.jsx     # Filterable transaction table
-│   └── TransactionModal.jsx    # Add/Edit transaction form modal
-├── context/
-│   └── AppContext.jsx          # Global state management (useReducer + Context)
-├── data/
-│   └── mockData.js             # Transaction generator and constants
-├── App.jsx                     # Main layout and page routing
-├── App.css                     # Component styles
-├── index.css                   # Design tokens and CSS reset
-└── main.jsx                    # Entry point
-```
+*   **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/) (Blazing fast HMR and builds)
+*   **State Management**: React Context Powerhouse (`AppProvider` + `useReducer`) for global data synchronization.
+*   **Charts**: [Recharts](https://recharts.org/) for robust, responsive data visualizations.
+*   **Icons**: [Lucide React](https://lucide.dev/) for high-quality, lightweight line icons.
+*   **Styling**: Vanilla CSS with a modern Design System (CSS Variables for theming, Flexbox/Grid for layout).
 
 ---
 
-## 🧠 Approach & Design Decisions
+##  Getting Started
 
-### State Management
-Used React's built-in `useReducer` + `Context API` instead of external libraries, keeping the bundle small while still having a centralized, predictable state flow. Actions like `ADD_TRANSACTION`, `SET_FILTER`, and `TOGGLE_DARK_MODE` follow a clean dispatch pattern.
+### Prerequisites
+*   [Node.js](https://nodejs.org/) (v16+ recommended)
+*   npm or yarn
 
-### Styling
-Vanilla CSS with CSS custom properties (variables) for theming. The design system uses a `[data-theme]` attribute on `<html>` to switch between light and dark color palettes without any runtime class toggling overhead.
-
-### Data
-Mock data is generated programmatically to simulate 6 months of realistic transactions across 13 categories. This avoids hardcoded JSON files and produces varied data on each fresh load (persisted via localStorage afterwards).
-
-### RBAC
-Frontend-only role simulation. The `role` state controls conditional rendering of admin actions (add/edit/delete buttons). No backend auth — just a demo toggle to show how UI adapts based on user permissions.
-
-### Charts
-Built with [Recharts](https://recharts.org/) — a composable React charting library. Used `AreaChart` for trends and `PieChart` (donut) for category breakdowns, with custom tooltips styled to match the theme.
-
----
-
-## 🛠️ Tech Stack
-
-| Technology | Purpose |
-|------------|---------|
-| React 19   | UI library |
-| Vite 8     | Build tool & dev server |
-| Recharts   | Data visualization |
-| React Icons | Icon library |
-| CSS Variables | Theming (dark/light) |
-| localStorage | Data persistence |
-| Context + useReducer | State management |
+### Installation
+1.  **Extract/Clone the project**:
+    ```bash
+    cd Zorvyn
+    ```
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+3.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
+4.  **View in browser**:
+    Open `http://localhost:5173` (or the port shown in your terminal).
 
 ---
 
-## 📋 Evaluation Coverage
+##  Submission Details
+*   **Name**: Muhammad Sheik Nauman
+*   **Email**: noumansheik07@gmail.com
+*   **Position**: Frontend Developer Intern
+*   **Assignment**: Finance Dashboard UI
 
-| Criteria | Implementation |
-|----------|---------------|
-| Design & Creativity | Premium dark theme, gradient accents, micro-animations, donut chart with center label |
-| Responsiveness | Mobile-first breakpoints at 480px, 768px, 1024px with collapsible sidebar |
-| Functionality | Dashboard, transactions (CRUD), filtering, sorting, search, CSV export, insights |
-| User Experience | Contextual greeting, smooth transitions, empty states, role badges |
-| Technical Quality | Modular components, memoized computations, clean reducer pattern |
-| State Management | Centralized Context + useReducer with localStorage persistence |
-| Documentation | This README with setup, architecture, and design rationale |
-| Attention to Detail | Edge cases (empty data), hover reveals for actions, form validation |
+*Built with passion and attention to detail for the Zorvyn Fintech Assignment.*
