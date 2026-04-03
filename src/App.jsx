@@ -7,6 +7,7 @@ import BalanceTrend from './components/BalanceTrend';
 import SpendingBreakdown from './components/SpendingBreakdown';
 import TransactionList from './components/TransactionList';
 import Insights from './components/Insights';
+import LandingPage from './components/LandingPage';
 import './App.css';
 
 function DashboardPage() {
@@ -55,10 +56,20 @@ function AppContent() {
   );
 }
 
+function MainRoutes() {
+  const [showLanding, setShowLanding] = useState(true);
+
+  if (showLanding) {
+    return <LandingPage onEnter={() => setShowLanding(false)} />;
+  }
+
+  return <AppContent />;
+}
+
 function App() {
   return (
     <AppProvider>
-      <AppContent />
+      <MainRoutes />
     </AppProvider>
   );
 }

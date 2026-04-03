@@ -20,7 +20,7 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-brand">
-        <div className="brand-icon">₹</div>
+        <img src="/FinTrack.png" alt="FinTrack Logo" className="brand-icon" />
         <span className="brand-name">FinTrack</span>
       </div>
 
