@@ -3,8 +3,7 @@
 
 const categories = {
   expense: [
-    'Food & Dining', 'Transport', 'Shopping', 'Entertainment',
-    'Bills & Utilities', 'Healthcare', 'Education', 'Subscriptions'
+    'Food & Dining', 'Transport', 'Shopping', 'Entertainment', 'Bills & Utilities'
   ],
   income: [
     'Salary', 'Freelance', 'Investment Returns', 'Side Project', 'Refund'

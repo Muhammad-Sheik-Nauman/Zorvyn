@@ -4,9 +4,45 @@ import { CATEGORIES, CATEGORY_COLORS } from '../data/mockData';
 import {
   HiOutlineSearch, HiOutlinePlus,
   HiOutlinePencil, HiOutlineTrash,
-  HiOutlineFilter, HiOutlineDownload
+  HiOutlineFilter, HiOutlineDownload,
+  HiChevronDown
 } from 'react-icons/hi';
 import TransactionModal from './TransactionModal';
+
+function CustomSelect({ value, onChange, options, label }) {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  const selectedLabel = options.find(o => o.value === value)?.label || value;
+
+  return (
+    <div className="custom-select-container">
+      <label className="filter-label">{label}</label>
+      <div className={`custom-select-trigger ${isOpen ? 'open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
+        <span>{selectedLabel}</span>
+        <HiChevronDown className={`select-arrow ${isOpen ? 'up' : ''}`} />
+      </div>
+      {isOpen && (
+        <>
+          <div className="select-overlay" onClick={() => setIsOpen(false)} />
+          <div className="custom-options-list">
+            {options.map(opt => (
+              <div 
+                key={opt.value} 
+                className={`custom-option ${value === opt.value ? 'active' : ''}`}
+                onClick={() => {
+                  onChange(opt.value);
+                  setIsOpen(false);
+                }}
+              >
+                {opt.label}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default function TransactionList() {
   const { state, dispatch } = useApp();
@@ -125,59 +161,52 @@ export default function TransactionList() {
         </div>
       </div>
 
-      {/* Filter panel */}
       {showFilters && (
         <div className="filter-panel">
-          <div className="filter-group">
-            <label>Type</label>
-            <select
-              value={filters.type}
-              onChange={e => dispatch({ type: 'SET_FILTER', key: 'type', value: e.target.value })}
-            >
-              <option value="all">All Types</option>
-              <option value="income">Income</option>
-              <option value="expense">Expense</option>
-            </select>
-          </div>
+          <CustomSelect 
+            label="Type"
+            value={filters.type}
+            options={[
+              { value: 'all', label: 'All Types' },
+              { value: 'income', label: 'Income' },
+              { value: 'expense', label: 'Expense' }
+            ]}
+            onChange={(val) => dispatch({ type: 'SET_FILTER', key: 'type', value: val })}
+          />
 
-          <div className="filter-group">
-            <label>Category</label>
-            <select
-              value={filters.category}
-              onChange={e => dispatch({ type: 'SET_FILTER', key: 'category', value: e.target.value })}
-            >
-              <option value="all">All Categories</option>
-              {allCategories.map(c => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </select>
-          </div>
+          <CustomSelect 
+            label="Category"
+            value={filters.category}
+            options={[
+              { value: 'all', label: 'All Categories' },
+              ...allCategories.map(c => ({ value: c, label: c }))
+            ]}
+            onChange={(val) => dispatch({ type: 'SET_FILTER', key: 'category', value: val })}
+          />
 
-          <div className="filter-group">
-            <label>Sort by</label>
-            <select
-              value={filters.sortBy}
-              onChange={e => dispatch({ type: 'SET_FILTER', key: 'sortBy', value: e.target.value })}
-            >
-              <option value="date">Date</option>
-              <option value="amount">Amount</option>
-              <option value="category">Category</option>
-            </select>
-          </div>
+          <CustomSelect 
+            label="Sort by"
+            value={filters.sortBy}
+            options={[
+              { value: 'date', label: 'Date' },
+              { value: 'amount', label: 'Amount' },
+              { value: 'category', label: 'Category' }
+            ]}
+            onChange={(val) => dispatch({ type: 'SET_FILTER', key: 'sortBy', value: val })}
+          />
 
-          <div className="filter-group">
-            <label>Order</label>
-            <select
-              value={filters.sortOrder}
-              onChange={e => dispatch({ type: 'SET_FILTER', key: 'sortOrder', value: e.target.value })}
-            >
-              <option value="desc">Newest First</option>
-              <option value="asc">Oldest First</option>
-            </select>
-          </div>
+          <CustomSelect 
+            label="Order"
+            value={filters.sortOrder}
+            options={[
+              { value: 'desc', label: 'Newest First' },
+              { value: 'asc', label: 'Oldest First' }
+            ]}
+            onChange={(val) => dispatch({ type: 'SET_FILTER', key: 'sortOrder', value: val })}
+          />
 
           <button
-            className="btn btn-ghost"
+            className="btn btn-ghost clear-btn"
             onClick={() => dispatch({ type: 'RESET_FILTERS' })}
           >
             Clear All

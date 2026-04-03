@@ -66,23 +66,25 @@ export default function TransactionModal({ transaction, onClose }) {
         </div>
 
         <form onSubmit={handleSubmit} className="modal-form">
-          {/* Type Toggle */}
-          <div className="type-toggle">
-            <button
-              type="button"
-              className={`toggle-btn ${form.type === 'expense' ? 'active expense' : ''}`}
-              onClick={() => handleTypeChange('expense')}
-            >
-              Expense
-            </button>
-            <button
-              type="button"
-              className={`toggle-btn ${form.type === 'income' ? 'active income' : ''}`}
-              onClick={() => handleTypeChange('income')}
-            >
-              Income
-            </button>
-          </div>
+          {/* Type Toggle - Only visible when adding new */}
+          {!isEditing && (
+            <div className="type-toggle">
+              <button
+                type="button"
+                className={`toggle-btn ${form.type === 'expense' ? 'active expense' : ''}`}
+                onClick={() => handleTypeChange('expense')}
+              >
+                Expense
+              </button>
+              <button
+                type="button"
+                className={`toggle-btn ${form.type === 'income' ? 'active income' : ''}`}
+                onClick={() => handleTypeChange('income')}
+              >
+                Income
+              </button>
+            </div>
+          )}
 
           {/* Description */}
           <div className="form-field">

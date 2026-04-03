@@ -22,7 +22,7 @@ function DashboardPage() {
   );
 }
 
-function AppContent() {
+function AppContent({ onExit }) {
   const { state } = useApp();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -41,7 +41,7 @@ function AppContent() {
 
   return (
     <div className={`app-layout ${sidebarOpen ? 'sidebar-open' : ''}`}>
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} onExit={onExit} />
       <div
         className="sidebar-overlay"
         onClick={() => setSidebarOpen(false)}
@@ -63,7 +63,7 @@ function MainRoutes() {
     return <LandingPage onEnter={() => setShowLanding(false)} />;
   }
 
-  return <AppContent />;
+  return <AppContent onExit={() => setShowLanding(true)} />;
 }
 
 function App() {

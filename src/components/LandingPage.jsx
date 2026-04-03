@@ -353,7 +353,7 @@ export default function LandingPage({ onEnter }) {
       <section id="hero" className="lp-hero">
         <div className="lp-hero-badge">
           <span className="lp-badge-dot" />
-          Now in open beta - free forever
+          Now in open beta . free forever
         </div>
 
         <h1 className="lp-hero-h1">
@@ -363,12 +363,12 @@ export default function LandingPage({ onEnter }) {
 
         <p className="lp-hero-sub">
           FinTrack is the all-in-one personal finance dashboard that turns raw transactions
-          into crystal-clear insights — beautifully designed, blazing fast, and 100% private.
+          into crystal-clear insights . beautifully designed, blazing fast, and 100% private.
         </p>
 
         <div className="lp-hero-actions">
           <button id="hero-get-started-btn" className="lp-btn lp-btn-primary lp-btn-lg" onClick={onEnter}>
-            Get Started — It's Free
+            Get Started . It's Free
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </button>
           <button id="hero-see-how-btn" className="lp-btn lp-btn-ghost lp-btn-lg" onClick={() => scrollTo('how')}>
@@ -410,7 +410,7 @@ export default function LandingPage({ onEnter }) {
           <div className="lp-section-badge">✦ Features</div>
           <h2 className="lp-section-title">Everything you need,<br />nothing you don't.</h2>
           <p className="lp-section-sub">
-            Built for people who want real financial clarity — not a product trying to upsell a credit card.
+            Built for people who want real financial clarity , not a product trying to upsell a credit card.
           </p>
         </Reveal>
 
@@ -436,7 +436,7 @@ export default function LandingPage({ onEnter }) {
 
         <div className="lp-steps">
           {[
-            { n: '01', icon: <LuMousePointer2 />, title: 'Open the App', desc: 'Click "Get Started" — no sign-up, no email, no credit card. Just open and go.' },
+            { n: '01', icon: <LuMousePointer2 />, title: 'Open the App', desc: 'Click "Get Started" , no sign-up, no email, no credit card. Just open and go.' },
             { n: '02', icon: <LuCreditCard />, title: 'Add Transactions', desc: 'Log income and expenses with a category, date, and description. Or use the pre-loaded demo data.' },
             { n: '03', icon: <LuLayoutDashboard />, title: 'See Your Insights', desc: 'The dashboard, charts, and insights page update instantly. Filter, sort, and find patterns in seconds.' },
             { n: '04', icon: <LuShare2 />, title: 'Export & Share', desc: 'Download your filtered transactions as a CSV anytime. Your data, your format.' },
@@ -527,7 +527,7 @@ export default function LandingPage({ onEnter }) {
             <div className="lp-cta-icon" aria-hidden="true">⚡</div>
             <h2 className="lp-cta-title">
               Take control of your finances.<br />
-              <span className="lp-gradient-text">Start today — it's free.</span>
+              <span className="lp-gradient-text">Start today . it's free.</span>
             </h2>
             <p className="lp-cta-sub">
               No account needed. No data leaves your device. Just open the app and start tracking.

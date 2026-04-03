@@ -26,12 +26,12 @@ export default function Header({ onMenuToggle }) {
         </button>
         <div>
           <h1 className="page-title">{titles[activeTab]}</h1>
-          <p className="page-greeting">{greetings()}, welcome back 👋</p>
+          <p className="page-greeting">{greetings()}, welcome back</p>
         </div>
       </div>
       <div className="header-right">
         <span className={`role-badge ${role}`}>
-          {role === 'admin' ? '🔑 Admin' : '👁️ Viewer'}
+          {role === 'admin' ? 'Admin' : 'Viewer'}
         </span>
       </div>
     </header>
