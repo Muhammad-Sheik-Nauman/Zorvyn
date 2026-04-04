@@ -42,7 +42,12 @@ function generateTransactions() {
   for (let monthOffset = 0; monthOffset < 6; monthOffset++) {
     const now = new Date();
     const targetMonth = new Date(now.getFullYear(), now.getMonth() - monthOffset, 1);
-    const daysInMonth = new Date(targetMonth.getFullYear(), targetMonth.getMonth() + 1, 0).getDate();
+    let daysInMonth = new Date(targetMonth.getFullYear(), targetMonth.getMonth() + 1, 0).getDate();
+    
+
+    if (monthOffset === 0) {
+      daysInMonth = 3;
+    }
 
     // Add 1-2 income transactions per month
     const incomeCount = Math.floor(Math.random() * 2) + 1;
