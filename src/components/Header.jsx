@@ -11,12 +11,7 @@ export default function Header({ onMenuToggle }) {
     insights: 'Insights'
   };
 
-  const greetings = () => {
-    const hour = new Date().getHours();
-    if (hour < 12) return 'Good Morning';
-    if (hour < 17) return 'Good Afternoon';
-    return 'Good Evening';
-  };
+
 
   return (
     <header className="header">
@@ -26,7 +21,7 @@ export default function Header({ onMenuToggle }) {
         </button>
         <div>
           <h1 className="page-title">{titles[activeTab]}</h1>
-          <p className="page-greeting">{greetings()}, welcome back</p>
+          <p className="page-greeting">Welcome back</p>
         </div>
       </div>
       <div className="header-right">
